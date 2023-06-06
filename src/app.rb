@@ -9,43 +9,46 @@ class App
   end
 
   def list_music_albums
-    puts 'Music Albums'
+    # puts @music_albums[0].publish_date
+    puts "\nMusic Albums"
     puts '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    puts 'No Albums Yet' if @music_albums.empty?
     @music_albums.each do |album|
-      puts "ID: #{album.id} Publish Date: #{album.published_date}"
+      puts "ID: #{album.id} Publish Date: #{album.publish_date}"
     end
-    puts '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
   end
 
   def list_genres
-    puts 'Genres'
+    puts "\nGenres"
     puts '+++++++++++++++++++++++++++++++++++++++'
-    @genres.each do |hash|
-      puts "ID: #{hash.id} Name: #{genre.name}"
+    puts 'No Genres Yet' if @genres.empty?
+    @genres.each do |genre|
+      puts "ID: #{genre.id} Name: #{genre.name}"
     end
-    puts '+++++++++++++++++++++++++++++++++++++++'
+    puts "+++++++++++++++++++++++++++++++++++++++\n"
   end
 
   def add_music_album
-    puts 'Please enter the following info'
+    puts "\nPlease enter the following info"
     print 'Published Date (DD-MM-YYYY): '
     published_date = gets.chomp
     print 'On Spotify (Y/N): '
-    on_spotify = gets.chomp
-    MusicAlbum.new(published_date, on_spotify)
-    puts 'Music Album created successfully'
+    on_spotify = gets.chomp.downcase
+    @music_albums << MusicAlbum.new(published_date, on_spotify == 'y')
+    puts "Music Album created successfully\n"
   end
 
   def add_genre
-    puts 'Please enter the following info'
+    puts "\nPlease enter the following info"
     print 'Name: '
     name = gets.chomp
-    Genre.new(name)
-    puts 'Genre created successfully'
+    @genres << Genre.new(name)
+    puts "Genre created successfully\n"
   end
 
   def before_exit
-    @storage.save_genres
-    @storage.save_music_albums
+    @storage.save_genres(@genres)
+    @storage.save_music_albums(@music_albums)
   end
 end

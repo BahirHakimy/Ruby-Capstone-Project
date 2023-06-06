@@ -34,7 +34,7 @@ class CatalogStorage
       genre = genres.find do |gen|
         gen.id == hash.values[1]
       end
-      genre.add_item(music_album)
+      genre.add_item(music_album) if genre
       music_album
     end
   end
