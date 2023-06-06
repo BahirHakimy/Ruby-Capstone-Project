@@ -3,8 +3,8 @@ require 'json'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(id, genre, author, source, label, publish_date, multiplayer, last_played_at)
-    super(id, genre, author, source, label, publish_date)
+  def initialize(id, hash, author, source, label, publish_date, multiplayer, last_played_at)
+    super(id, hash, author, source, label, publish_date)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
