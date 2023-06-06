@@ -61,5 +61,4 @@ def add_game(games)
   puts "Game with ID #{game.id} added."
 end
 
-
 main
