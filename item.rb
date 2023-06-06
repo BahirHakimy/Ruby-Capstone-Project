@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+# Represents an item.
 class Item
   attr_reader :id, :genre, :author, :source, :lable, :published_date
-  attr_accessor :archive
-
+  attr_accessor :archive, :author
 
   def initialize(id, genre, author, source, lable, publish_date)
     @id = id
