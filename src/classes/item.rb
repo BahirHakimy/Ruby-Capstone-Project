@@ -1,19 +1,18 @@
 class Item
-  attr_reader :id, :genre, :author, :source, :lable, :published_date
+  attr_reader :genre, :author, :source, :lable, :published_date
   attr_accessor :archive
 
-
-  def initialize(id, genre, author, source, lable, publish_date)
-    @id = id
-    @genre = genre
-    @author = author
-    @source = source
-    @lable = lable
+  def initialize(publish_date)
+    @id = Random.rand(1..500)
+    @genre = nil
+    @author = nil
+    @source = nil
+    @lable = nil
     @publish_date = publish_date
     @archive = false
   end
 
-  def can_be_archived
+  def can_be_archived?
     publish_date <= Date.today - 10 * 365
   end
 
