@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Item
   attr_reader :id, :genre, :author, :source, :lable, :published_date
   attr_accessor :archive
