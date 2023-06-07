@@ -40,6 +40,7 @@ def main
   puts "\nWelcome to our app \n\n"
   puts "Please select an operation from the list \n\n"
   exit = false
+
   until exit
     show_options
     print 'Choice: '
