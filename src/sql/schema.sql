@@ -30,3 +30,21 @@ CREATE TABLE music_album(
 
 ALTER TABLE music_album ADD CONSTRAINT fk_item
   FOREIGN KEY (item_id) REFERENCES item(id);
+
+  CREATE TABLE games (
+  id SERIAL PRIMARY KEY,
+  genre VARCHAR(255),
+  author_id INT,
+  source VARCHAR(255),
+  label VARCHAR(255),
+  publish_date DATE,
+  archived BOOLEAN,
+  multiplayer BOOLEAN,
+  last_played_at DATE
+);
+
+CREATE TABLE authors (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255)
+);

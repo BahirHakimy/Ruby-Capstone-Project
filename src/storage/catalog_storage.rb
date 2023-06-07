@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require_relative './storage'
 require_relative '../classes/genre'
 require_relative '../classes/music_album'
 
+# Represents the catalogstorage of the application.
 class CatalogStorage
   def initialize
     @genres_key = 'genres'
@@ -34,7 +37,7 @@ class CatalogStorage
       genre = genres.find do |gen|
         gen.id == hash.values[1]
       end
-      genre.add_item(music_album) if genre
+      genre&.add_item(music_album)
       music_album
     end
   end

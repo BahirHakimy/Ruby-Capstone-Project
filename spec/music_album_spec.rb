@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../src/classes/music_album'
 require_relative '../src/classes/item'
 
@@ -20,9 +22,9 @@ describe MusicAlbum do
     end
   end
 
-  it "should create a valid hash from an instance" do 
+  it 'should create a valid hash from an instance' do
     expected_hash = { id: 22, genre: nil, author: nil, source: nil, label: nil,
-      publish_date: '22-02-2012', archived: false, on_spotify:false }
+                      publish_date: '22-02-2012', archived: false, on_spotify: false }
     hash = album.to_hash
     expect(hash).to eql expected_hash
   end

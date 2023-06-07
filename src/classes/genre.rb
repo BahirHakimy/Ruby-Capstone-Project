@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Represents a genre of items.
 class Genre
   attr_accessor :name
   attr_reader :id, :items
