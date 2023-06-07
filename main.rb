@@ -100,25 +100,38 @@ def list_authors(authors)
 end
 
 def add_game(games, authors)
-  puts 'Enter game details:'
-  print 'Multiplayer (true/false): '
-  multiplayer = gets.chomp.downcase == 'true'
-  print 'Last Played At (YYYY-MM-DD): '
-  last_played_at = Date.parse(gets.chomp)
+  multiplayer = read_multiplayer
+  last_played_at = read_last_played_at
+  author = create_author(authors)
+  game = create_game(games, author, multiplayer, last_played_at)
 
-  puts 'Enter author details:'
+  puts "Game with ID #{game.id} added."
+end
+
+def read_multiplayer
+  print 'Multiplayer (true/false): '
+  gets.chomp.downcase == 'true'
+end
+
+def read_last_played_at
+  print 'Last Played At (YYYY-MM-DD): '
+  Date.parse(gets.chomp)
+end
+
+def create_author(authors)
   print 'First Name: '
   first_name = gets.chomp
   print 'Last Name: '
   last_name = gets.chomp
-
   author = Author.new(generate_id('author'), first_name, last_name)
   authors << author
+  author
+end
 
+def create_game(games, author, multiplayer, last_played_at)
   game = Game.new(generate_id('game'), 'Game', author, multiplayer, last_played_at)
   games << game
-
-  puts "Game with ID #{game.id} added."
+  game
 end
 
 def generate_id(prefix)
