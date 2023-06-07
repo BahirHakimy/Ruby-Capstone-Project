@@ -53,29 +53,4 @@ def main
   end
 end
 
-def list_games(games)
-  games.each do |game|
-    puts "Game ID: #{game.id}, Multiplayer: #{game.multiplayer}, Last Played At: #{game.last_played_at}"
-  end
-end
-
-def list_authors(authors)
-  authors.each do |author|
-    puts "Author ID: #{author.id}, Name: #{author.first_name} #{author.last_name}"
-  end
-end
-
-def add_game(games)
-  puts 'Enter game details:'
-  print 'Multiplayer (true/false): '
-  multiplayer = gets.chomp.downcase == 'true'
-  print 'Last Played At (YYYY-MM-DD): '
-  last_played_at = Date.parse(gets.chomp)
-
-  game = Game.new(multiplayer, last_played_at)
-  games << game
-
-  puts "Game with ID #{game.id} added."
-end
-
 main
