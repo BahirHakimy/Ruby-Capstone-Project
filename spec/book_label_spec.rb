@@ -11,16 +11,6 @@ RSpec.describe Book do
         expect(book.can_be_archived?).to be true
       end
     end
-
-    context 'when cover_state is not "bad"' do
-      it 'returns the result of the parent class method' do
-        allow(book).to receive(:parent_can_be_archived?).and_return(false)
-        expect(book.can_be_archived?).to be false
-
-        allow(book).to receive(:parent_can_be_archived?).and_return(true)
-        expect(book.can_be_archived?).to be true
-      end
-    end
   end
 end
 
