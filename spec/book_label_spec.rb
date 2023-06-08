@@ -2,7 +2,7 @@ require_relative '../src/classes/book'
 require_relative '../src/classes/label'
 
 RSpec.describe Book do
-  let(:book) { Book.new('book_1', 'Title', 'Author', 'Publisher', 'Good') }
+  let(:book) { Book.new('book_1', 'Author', 'Publisher', 'Good') }
 
   describe '#can_be_archived?' do
     context 'when cover_state is "bad"' do
