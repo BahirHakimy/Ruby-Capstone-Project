@@ -88,6 +88,16 @@ class App
     puts "Book created successfully\n"
   end
 
+  def add_label
+    puts "\nPlease enter the following info"
+    print 'Title: '
+    title = gets.chomp
+    print 'Color: '
+    color = gets.chomp
+    @labels << Label.new(generate_id('label'), title, color)
+    puts "Label created successfully\n"
+  end
+
   def before_exit
     @storage.save_genres(@genres)
     @storage.save_music_albums(@music_albums)
