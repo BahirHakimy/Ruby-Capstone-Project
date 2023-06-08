@@ -17,18 +17,23 @@ OPTIONS = [
   'Add a music album',
   'Add a genre',
   'Add a game',
+  'Add a label',
   'Exit'
 ].freeze
 
 def execute_selection(app, selection)
   operations = {
+    1 => app.method(:list_books),
     2 => app.method(:list_music_albums),
     3 => proc { app.list_games(app.games) },
     4 => app.method(:list_genres),
+    5 => app.method(:list_labels),
     6 => proc { app.list_authors(app.authors) },
+    7 => app.method(:add_book),
     8 => app.method(:add_music_album),
     9 => app.method(:add_genre),
-    10 => proc { app.add_game(app.games, app.authors) }
+    10 => proc { app.add_game(app.games, app.authors) },
+    11 => app.method(:add_label)
   }
   operations[selection].call
 end

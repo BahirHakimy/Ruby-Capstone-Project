@@ -1,13 +1,16 @@
 require 'json'
 require_relative './classes/music_album'
 require_relative './storage/catalog_storage'
+require_relative './classes/book'
 class App
-  attr_reader :games, :authors
+  attr_reader :games, :authors, :books, :labels
 
   def initialize
     @storage = CatalogStorage.new
     @genres = @storage.load_genres
     @music_albums = @storage.load_albums(@genres)
+    @books = @storage.load_books
+    @labels = @storage.load_labels
     @games = @storage.load_games # Load game data from JSON file
     @authors = @storage.load_authors # Load author data from JSON file
   end
@@ -32,6 +35,26 @@ class App
     puts "========================================================\n"
   end
 
+  def list_books
+    puts "\nBooks"
+    puts '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    puts 'No Books Yet' if @books.empty?
+    @books.each do |book|
+      puts "ID: #{book.id} Publish Date: #{book.publish_date} Publisher: #{book.publisher}"
+    end
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
+  end
+
+  def list_labels
+    puts "\nLabels"
+    puts '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    puts 'No Labels Yet' if @labels.empty?
+    @labels.each do |label|
+      puts "ID: #{label.id} Title: #{label.title} Color: #{label.color}"
+    end
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
+  end
+
   def add_music_album
     puts "\nPlease enter the following info"
     print 'Published Date (DD-MM-YYYY): '
@@ -50,9 +73,33 @@ class App
     puts "Genre created successfully\n"
   end
 
+  def add_book
+    puts "\nPlease enter the following info"
+    print 'Published Date (DD-MM-YYYY): '
+    published_date = gets.chomp
+    print 'Publisher: '
+    publisher = gets.chomp
+    print 'Cover State: '
+    cover_state = gets.chomp
+    @books << Book.new(published_date, publisher, cover_state)
+    puts "Book created successfully\n"
+  end
+
+  def add_label
+    puts "\nPlease enter the following info"
+    print 'Title: '
+    title = gets.chomp
+    print 'Color: '
+    color = gets.chomp
+    @labels << Label.new(generate_id('label'), title, color)
+    puts "Label created successfully\n"
+  end
+
   def before_exit
     @storage.save_genres(@genres)
     @storage.save_music_albums(@music_albums)
+    @storage.save_books(@books)
+    @storage.save_labels(@labels)
     @storage.save_authors(@authors) # Save author data to JSON file
     @storage.save_games(@games) # Save game data to JSON file
   end

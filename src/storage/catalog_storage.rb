@@ -1,6 +1,8 @@
 require_relative './storage'
 require_relative '../classes/genre'
 require_relative '../classes/music_album'
+require_relative '../classes/book'
+require_relative '../classes/label'
 require_relative '../classes/game'
 require_relative '../classes/author'
 
@@ -9,6 +11,8 @@ class CatalogStorage
   def initialize
     @genres_key = 'genres'
     @albums_key = 'albums'
+    @books_key = 'books'
+    @labels_key = 'labels'
     @authors_key = 'authors'
     @games_key = 'games'
   end
@@ -19,6 +23,14 @@ class CatalogStorage
 
   def save_music_albums(music_albums)
     Storage.save_data(music_albums.map { |hash| hash&.to_hash }, @albums_key)
+  end
+
+  def save_books(books)
+    Storage.save_data(books.map(&:to_hash), @books_key)
+  end
+
+  def save_labels(labels)
+    Storage.save_data(labels.map(&:to_hash), @labels_key)
   end
 
   def load_genres
@@ -44,6 +56,19 @@ class CatalogStorage
     end
   end
 
+  def load_books
+    data = Storage.load_data(@books_key)
+    return [] unless data
+
+    data.map { |hash| Book.new(hash['publish_date'], hash['publisher'], hash['cover_state'], hash['id']) }
+  end
+
+  def load_labels
+    data = Storage.load_data(@labels_key)
+    return [] unless data
+
+    data.map { |hash| Label.new(hash['id'], hash['title'], hash['color']) }
+  end
   def load_authors
     data = Storage.load_data(@authors_key)
     return [] unless data
