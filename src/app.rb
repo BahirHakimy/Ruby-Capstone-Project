@@ -2,15 +2,17 @@
 require 'json'
 require_relative './classes/music_album'
 require_relative './storage/catalog_storage'
-
+require_relative './classes/book'
 
 class App
-  attr_reader :games, :authors
+  attr_reader :games, :authors, :books, :labels
 
   def initialize
     @storage = CatalogStorage.new
     @genres = @storage.load_genres
     @music_albums = @storage.load_albums(@genres)
+    @books = @storage.load_books
+    @labels = @storage.load_labels
     @games = Game.load_games('storage/game.json') # Load game data from JSON file
     @authors = Author.load_authors('storage/author.json') # Load author data from JSON file
   end
