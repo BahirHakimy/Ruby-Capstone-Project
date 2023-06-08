@@ -31,6 +31,6 @@ class Game
     games_data = games.map do |game|
       { multiplayer: game.multiplayer, last_played_at: game.last_played_at.to_s }
     end
-    File.write(filename, JSON.dump(games_data))
+    File.write(filename, JSON.pretty_generate(games_data))
   end
 end

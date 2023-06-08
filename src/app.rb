@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-
+require 'json'
 require_relative './classes/music_album'
 require_relative './storage/catalog_storage'
 
-# Represents the application.
+
 class App
   attr_reader :games, :authors
 
@@ -11,8 +11,8 @@ class App
     @storage = CatalogStorage.new
     @genres = @storage.load_genres
     @music_albums = @storage.load_albums(@genres)
-    @games = []
-    @authors = []
+    @games = Game.load_games('storage/game.json') # Load game data from JSON file
+    @authors = Author.load_authors('storage/author.json') # Load author data from JSON file
   end
 
   def list_music_albums
@@ -57,6 +57,8 @@ class App
   def before_exit
     @storage.save_genres(@genres)
     @storage.save_music_albums(@music_albums)
+    Game.save_games(@games, 'storage/game.json') # Save game data to JSON file
+    Author.save_authors(@authors, 'storage/author.json') # Save author data to JSON file
   end
 
   def list_games(games)
@@ -96,13 +98,21 @@ class App
     print 'Last Name: '
     last_name = gets.chomp
     author = Author.new(generate_id('author'), first_name, last_name)
-    authors << author
+    @authors << author
+    authors_data = @authors.map do |author|
+      {id:author.id, first_name: author.first_name, last_name: author.last_name }
+    end
+    File.write("storage/author.json", JSON.pretty_generate(authors_data))
     author
   end
 
   def create_game(games, author, multiplayer, last_played_at)
     game = Game.new(generate_id('game'), 'Game', author, multiplayer, last_played_at)
-    games << game
+    @games << game
+    games_data = @games.map do |game|
+      { id: game.id, genre: game.genre, multiplayer: game.multiplayer, last_played_at: game.last_played_at.to_s }
+    end
+    File.write("storage/game.json", JSON.pretty_generate(games_data))
     game
   end
 
