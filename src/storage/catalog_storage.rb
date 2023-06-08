@@ -53,4 +53,18 @@ class CatalogStorage
       music_album
     end
   end
+
+  def load_books
+    data = Storage.load_data(@books_key)
+    return [] unless data
+
+    data.map { |hash| Book.new(hash['publish_date'], hash['publisher'], hash['cover_state'], hash['id']) }
+  end
+
+  def load_labels
+    data = Storage.load_data(@labels_key)
+    return [] unless data
+
+    data.map { |hash| Label.new(hash['id'], hash['title'], hash['color']) }
+  end
 end
