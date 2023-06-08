@@ -69,6 +69,7 @@ class CatalogStorage
 
     data.map { |hash| Label.new(hash['id'], hash['title'], hash['color']) }
   end
+
   def load_authors
     data = Storage.load_data(@authors_key)
     return [] unless data

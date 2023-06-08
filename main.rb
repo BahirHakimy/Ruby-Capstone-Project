@@ -33,11 +33,11 @@ def listings(app)
 end
 
 def execute_selection(app, selection)
-  operations = { 7 => app.method(:add_book),
-    8 => app.method(:add_music_album),
-    9 => app.method(:add_genre),
-    10 => proc { app.add_game(app.games, app.authors) },
-    11 => app.method(:add_label) }
+  operations = {
+    7 => app.method(:add_book),
+    8 => app.method(:add_music_album), 9 => app.method(:add_genre),
+    10 => proc { app.add_game(app.games, app.authors) }, 11 => app.method(:add_label)
+  }
   if selection < 7
     listings(app)[selection].call
   else
