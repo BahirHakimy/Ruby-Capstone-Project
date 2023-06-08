@@ -8,5 +8,16 @@ class Label
     @items = []
   end
 
+  def add_item(item)
+    items << item
+  end
 
+  def to_hash
+    {
+      id: id,
+      title: title,
+      color: color,
+      items: items.map(&:id)
+    }
+  end
 end
