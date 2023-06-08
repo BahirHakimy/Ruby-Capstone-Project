@@ -48,6 +48,16 @@ class App
     puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
   end
 
+  def list_labels
+    puts "\nLabels"
+    puts '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    puts 'No Labels Yet' if @labels.empty?
+    @labels.each do |label|
+      puts "ID: #{label.id} Title: #{label.title} Color: #{label.color}"
+    end
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
+  end
+
   def add_music_album
     puts "\nPlease enter the following info"
     print 'Published Date (DD-MM-YYYY): '
