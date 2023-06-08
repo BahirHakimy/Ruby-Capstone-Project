@@ -11,6 +11,8 @@ class CatalogStorage
   def initialize
     @genres_key = 'genres'
     @albums_key = 'albums'
+    @books_key = 'books'
+    @labels_key = 'labels'
   end
 
   def save_genres(genres)
@@ -19,6 +21,14 @@ class CatalogStorage
 
   def save_music_albums(music_albums)
     Storage.save_data(music_albums.map { |hash| hash&.to_hash }, @albums_key)
+  end
+
+  def save_books(books)
+    Storage.save_data(books.map(&:to_hash), @books_key)
+  end
+
+  def save_labels(labels)
+    Storage.save_data(labels.map(&:to_hash), @labels_key)
   end
 
   def load_genres
