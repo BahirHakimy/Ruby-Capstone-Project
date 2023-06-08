@@ -101,6 +101,8 @@ class App
   def before_exit
     @storage.save_genres(@genres)
     @storage.save_music_albums(@music_albums)
+    @storage.save_books(@books)
+    @storage.save_labels(@labels)
     Game.save_games(@games, 'storage/game.json') # Save game data to JSON file
     Author.save_authors(@authors, 'storage/author.json') # Save author data to JSON file
   end
