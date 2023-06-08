@@ -20,9 +20,9 @@ RSpec.describe Label do
 
   describe '#add_item' do
     it 'adds the item to the collection' do
-      expect {
+      expect do
         label.add_item(item)
-      }.to change { label.items.length }.by(1)
+      end.to change { label.items.length }.by(1)
 
       expect(label.items).to include(item)
     end
