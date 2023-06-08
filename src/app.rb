@@ -38,6 +38,16 @@ class App
     puts "+++++++++++++++++++++++++++++++++++++++\n"
   end
 
+  def list_books
+    puts "\nBooks"
+    puts '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    puts 'No Books Yet' if @books.empty?
+    @books.each do |book|
+      puts "ID: #{book.id} Publish Date: #{book.publish_date} Publisher: #{book.publisher}"
+    end
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
+  end
+
   def add_music_album
     puts "\nPlease enter the following info"
     print 'Published Date (DD-MM-YYYY): '
