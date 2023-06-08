@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'json'
 require_relative './src/classes/game'
 require_relative './src/classes/item'
@@ -19,7 +17,6 @@ OPTIONS = [
   'Add a music album',
   'Add a genre',
   'Add a game',
-  'Add an author',
   'Exit'
 ].freeze
 
@@ -42,21 +39,20 @@ def show_options
   end
 end
 
-def main
-  app = App.new
-  puts "\nWelcome to our app \n\n"
+def welcome
+  puts "\nWelcome to our app"
   puts "Please select an operation from the list \n\n"
-  exit = false
+  App.new
+end
 
-  until exit
+def main
+  app = welcome
+  loop do
     show_options
     print 'Choice: '
     selection = gets.chomp.to_i
     execute_selection(app, selection) if selection < OPTIONS.length
-    if selection == OPTIONS.length
-      exit = true
-      app.before_exit
-    end
+    break if selection == OPTIONS.length && app.before_exit
   end
 end
 
