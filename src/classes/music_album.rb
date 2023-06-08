@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require_relative './item'
+
+# Represents a music album.
 class MusicAlbum < Item
   def initialize(publish_date, on_spotify, id = nil)
     super(publish_date, id)

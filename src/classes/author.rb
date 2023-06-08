@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'json'
 
+# Represents an author of items.
 class Author
   attr_reader :id, :first_name, :last_name
   attr_accessor :items
@@ -12,8 +15,8 @@ class Author
   end
 
   def add_item(item)
-    item.author = self
     @items << item
+    item.author = self
   end
 
   def self.load_authors(filename)

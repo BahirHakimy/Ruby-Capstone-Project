@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'date'
+
+# Represents an item in the library.
 class Item
   attr_reader :archive, :id
   attr_accessor :genre, :author, :source, :lable, :publish_date

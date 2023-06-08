@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'json'
+
+# Represents a storage for data.
 class Storage
   def self.save_data(obj, key)
     path = File.join(File.dirname(__FILE__), "#{key}.json")
