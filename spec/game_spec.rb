@@ -1,9 +1,5 @@
-# frozen_string_literal: true
-
 require_relative '../src/classes/game'
 require_relative '../src/classes/item'
-
-# frozen_string_literal: true
 
 RSpec.describe Game do
   let(:author) { Author.new(1, 'John', 'Doe') }

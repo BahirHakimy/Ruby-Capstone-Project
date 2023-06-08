@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../src/classes/music_album'
 require_relative '../src/classes/item'
 
