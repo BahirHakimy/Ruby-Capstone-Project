@@ -143,7 +143,6 @@ class App
     last_name = gets.chomp
     author = Author.new(generate_id('author'), first_name, last_name)
     @authors << author
-    # Storage.save_data(serialize_authors, 'author')
     author
   end
 
@@ -156,7 +155,6 @@ class App
   def create_game(_games, author, multiplayer, last_played_at)
     game = Game.new(generate_id('game'), 'Game', author, multiplayer, last_played_at)
     @games << game
-    # Storage.save_data(serialize_games, 'game')
     game
   end
 
