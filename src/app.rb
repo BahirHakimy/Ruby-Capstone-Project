@@ -76,6 +76,18 @@ class App
     puts "Genre created successfully\n"
   end
 
+  def add_book
+    puts "\nPlease enter the following info"
+    print 'Published Date (DD-MM-YYYY): '
+    published_date = gets.chomp
+    print 'Publisher: '
+    publisher = gets.chomp
+    print 'Cover State: '
+    cover_state = gets.chomp
+    @books << Book.new(published_date, publisher, cover_state)
+    puts "Book created successfully\n"
+  end
+
   def before_exit
     @storage.save_genres(@genres)
     @storage.save_music_albums(@music_albums)
