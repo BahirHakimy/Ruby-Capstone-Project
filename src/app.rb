@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'json'
 require_relative './classes/music_album'
 require_relative './storage/catalog_storage'
 require_relative './classes/book'
+
+# Represents the application.
 class App
   attr_reader :games, :authors, :books, :labels
 

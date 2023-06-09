@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class to represent a label
 class Label
   attr_accessor :id, :title, :color, :items
 
