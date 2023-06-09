@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../src/classes/genre'
 
 describe Genre do
