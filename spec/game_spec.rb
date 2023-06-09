@@ -35,4 +35,22 @@ RSpec.describe Game do
       expect(loaded_data).to eq(game_data)
     end
   end
+
+  describe '#can_be_archived?' do
+    context 'when last played more than 2 years ago' do
+      let(:game) { Game.new(1, 'RPG', 'John', true, Date.today - 730) }
+
+      it 'returns true' do
+        expect(game.can_be_archived?).to be true
+      end
+    end
+
+    context 'when last played less than 2 years ago' do
+      let(:game) { Game.new(2, 'FPS', 'Jane', false, Date.today - 400) }
+
+      it 'returns false' do
+        expect(game.can_be_archived?).to be false
+      end
+    end
+  end
 end
