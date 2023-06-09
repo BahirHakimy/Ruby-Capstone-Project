@@ -48,3 +48,24 @@ CREATE TABLE authors (
   first_name VARCHAR(255),
   last_name VARCHAR(255)
 );
+
+CREATE TABLE books (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  publisher VARCHAR(255) NOT NULL,
+  cover_state VARCHAR(255) NOT NULL,
+  publish_date DATE NOT NULL
+);
+
+CREATE TABLE labels (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  color VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE book_labels (
+  book_id INTEGER REFERENCES books(id),
+  label_id INTEGER REFERENCES labels(id),
+  PRIMARY KEY (book_id, label_id)
+);
