@@ -31,3 +31,5 @@ class Game < Item
     File.write(filename, JSON.pretty_generate(games_data))
   end
 end
+
+require_relative './item'

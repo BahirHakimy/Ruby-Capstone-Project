@@ -1,10 +1,8 @@
 [
   {
+    "genre": "RPG",
+    "author": "John Doe",
     "multiplayer": true,
-    "last_played_at": "2023-06-06"
-  },
-  {
-    "multiplayer": false,
-    "last_played_at": "2022-05-05"
+    "last_played_at": "2023-06-09"
   }
 ]
