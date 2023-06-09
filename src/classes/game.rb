@@ -2,12 +2,11 @@ require 'json'
 require_relative 'item'
 
 # Represents a game item.
-class Game
-  attr_reader :id, :genre, :author
+class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
   def initialize(id, genre, author, multiplayer, last_played_at)
-    @id = id
+    super(id)
     @genre = genre
     @author = author
     @multiplayer = multiplayer
